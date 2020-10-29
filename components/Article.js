@@ -103,14 +103,62 @@ const data = [
     <span class="expandButton">+</span>
   </div>
 
-  Step 2: Still inside `articleMaker`, add an event listener to the span.expandButton.
-  This listener should toggle the class 'article-open' on div.article.
+  */
+function articleMaker (article) {
+  const articleDiv = document.createElement('div');
+  articleDiv.classList.add('article');
 
-  Step 3: Don't forget to return something from your function!
+  const titleH2 = document.createElement('h2');
+  titleH2.textContent = article.title;
+  articleDiv.appendChild(titleH2);
 
-  Step 4: Outside your function now, loop over the data. At each iteration you'll use your component
-  to create a div.article element and append it to the DOM inside div.articles (see index.html).
+  const datePar = document.createElement('p');
+  datePar.classList.add('date');
+  datePar.textContent = article.date;
+  articleDiv.appendChild(datePar);
 
-  Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
+  const paragraph1 = document.createElement('p');
+  paragraph1.textContent = article.firstParagraph;
+  articleDiv.appendChild(paragraph1);
+
+  const paragraph2 = document.createElement('p');
+  paragraph2.textContent = article.secondParagraph;
+  articleDiv.appendChild(paragraph2);
+
+  const paragraph3 = document.createElement('p');
+  paragraph3.textContent = article.thirdParagraph;
+  articleDiv.appendChild(paragraph3);
+  
+ /* Step 2: Still inside `articleMaker`, add an event listener to the span.expandButton.
+  This listener should toggle the class 'article-open' on div.article. */
+  const span = document.createElement('span');
+  span.classList.add('expandButton');
+  span.textContent = '+';
+  span.addEventListener('click', ()=>{articleDiv.classList.toggle('article-open')}
+  );
+ /* Step 3: Don't forget to return something from your function! */
+ return articleDiv;
+}
+
+/*  Step 4: Outside your function now, loop over the data. At each iteration you'll use your component
+  to create a div.article element and append it to the DOM inside div.articles (see index.html).*/
+data.forEach((item) => {
+  let elemItem = articleMaker(item);
+  let artDiv = document.querySelector('.articles');
+
+  artDiv.appendChild(elemItem);
+});
+/*  Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
 */
+const newData = {
+  title: 'Lion turkish angora kitty',
+  date: 'October 31st, 2020',
+  firstParagraph: 'Donskoy ocelot. Panther egyptian mau but egyptian mau. Tabby. Bombay. Mouser. Ragdoll norwegian forest ocicat yet himalayan but sphynx or russian blue siberian. Maine coon cheetah for havana brown. Jaguar american bobtail, puma kitty or persian. Burmese malkin tomcat singapura but american shorthair maine coon jaguar. Cheetah savannah, and maine coon. Tiger himalayan bombay. Munchkin donskoy cougar american bobtail, ocicat sphynx. Puma himalayan or kitten abyssinian lion so himalayan yet birman. American shorthair ragdoll so donskoy british shorthair. Kitten burmese so lynx turkish angora tom for manx.',
+  
+  secondParagraph: 'Siberian cornish rex siamese yet cougar or sphynx puma birman. Jaguar egyptian mau. Abyssinian ragdoll. Tabby american bobtail yet mouser so kitty. Tabby american shorthair yet cornish rex tabby yet grimalkin. Tom. Maine coon scottish fold so sphynx or lynx or tom but birman. Himalayan scottish fold malkin but jaguar tabby. Manx savannah tom cougar american bobtail so bombay, so british shorthair. Leopard ocicat singapura so cheetah bombay, tomcat. Singapura tom leopard singapura for havana brown. Kitten. Kitty abyssinian and cornish rex. Tabby singapura, british shorthair or cougar. Norwegian forest bombay leopard for tomcat. Kitten ocelot ragdoll siberian. Ocicat havana brown so tom but egyptian mau. Havana brown. Himalayan british shorthair american bobtail or ocicat lion for balinese . Bengal savannah or abyssinian . Devonshire rex ragdoll, siberian cheetah, cornish rex and turkish angora. American bobtail. Leopard bombay or american bobtail. Thai sphynx and cornish rex american shorthair and russian blue and leopard. Bobcat.',
+
+  thirdParagraph: 'Himalayan tomcat, malkin yet maine coon, but maine coon but siamese tabby. Devonshire rex russian blue yet persian, but burmese. Ocicat grimalkin. Siamese american bobtail. Birman. Puma maine coon or norwegian forest so tom himalayan so bombay and egyptian mau. Russian blue puma for ragdoll egyptian mau sphynx. Bengal devonshire rex jaguar. Turkish angora. Birman himalayan singapura. Kitten siberian munchkin donskoy for leopard yet thai. Russian blue persian but british shorthair tomcat for cougar, bobcat, and ragdoll. Cornish rex siamese persian yet havana brown. Bengal persian panther yet lynx. Lynx kitty jaguar tomcat but scottish fold or cougar but munchkin. Bengal siamese and jaguar persian. Kitten. Scottish fold balinese or grimalkin. Havana brown tabby donskoy leopard donskoy. Lynx kitten but manx so malkin birman siberian munchkin. Himalayan thai. Cheetah scottish fold, yet munchkin for thai for balinese ocicat for lion. Egyptian mau.'
+}
+
+document.querySelector('.articles').appendChild(articleMaker(newData));
